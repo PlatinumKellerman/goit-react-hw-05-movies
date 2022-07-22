@@ -1,25 +1,38 @@
-import { Formik, Field } from 'formik';
-import * as yup from 'yup';
+import { SearchForm } from 'components/SearchForm';
+import { useState, useEffect } from 'react';
+import { getMoviesByName } from '../../services/api';
+import { MovieList } from '../../components/MovieList/index';
 
 export function Movies() {
-  const schema = yup.object().shape({
-    movieName: yup.string().required('This field cannot be empty'),
-  });
+  const [movieName, setMovieName] = useState('');
+  const [movies, setMovies] = useState([]);
 
+  useEffect(() => {
+    const name = movieName.movieName;
+    if (name === '' || name === null) return;
+    async function moviesByName() {
+      try {
+        await getMoviesByName(name).then(data => {
+          setMovies(data);
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    if (name) {
+      moviesByName();
+    }
+  }, [movieName]);
+
+  const handleMovieNameSubmit = searchName => {
+    if (searchName) {
+      setMovieName(searchName);
+    }
+  };
   return (
     <>
-      <Formik initialValues={{ movieName: '' }} validationSchema={schema}>
-        <form>
-          <Field
-            name="movieName"
-            type="text"
-            autoComplete="off"
-            autoFocus
-            placeholder="Search movies"
-          />
-          <button></button>
-        </form>
-      </Formik>
+      <SearchForm onSubmit={handleMovieNameSubmit} />
+      <MovieList movies={movies} />
     </>
   );
 }

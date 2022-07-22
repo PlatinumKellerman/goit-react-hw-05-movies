@@ -9,3 +9,15 @@ export async function getPopularMovies() {
   });
   return response.data.results;
 }
+
+export async function getMoviesByName(movieName) {
+  const response = await axios.get(`${BASE_URL}/search/movie?`, {
+    params: {
+      query: movieName,
+      page: 1,
+      api_key: API_KEY,
+      language: 'en-US',
+    },
+  });
+  return response.data.results;
+}
