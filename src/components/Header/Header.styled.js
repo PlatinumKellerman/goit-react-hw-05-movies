@@ -7,5 +7,20 @@ export const HeaderBar = styled.header`
 
 export const NavItem = styled(NavLink)`
   text-decoration: none;
-  cursor: none;
+  font-size: 24px;
+  font-weight: 600;
+  margin-right: 10px;
+  &:last-child {
+    margin-right: 0px;
+  }
+  &.active {
+    background-color: skyblue;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+  }
+  :hover:not(.active),
+  :focus-visible:not(.active) {
+    color: blueviolet;
+  }
 `;
