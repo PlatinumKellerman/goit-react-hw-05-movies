@@ -23,11 +23,10 @@ export async function getMoviesByName(movieName) {
 }
 
 export async function getMoviesById(id) {
-  const response = await axios.get(`${BASE_URL}/search/movie/${id}?`, {
+  const response = await axios.get(`${BASE_URL}/movie/${id}?`, {
     params: {
       api_key: API_KEY,
-      language: 'en-US',
     },
   });
-  return response.data.results;
+  return response.data;
 }

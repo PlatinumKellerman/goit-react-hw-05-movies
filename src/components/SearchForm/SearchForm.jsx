@@ -1,7 +1,7 @@
 import { Formik, Field, Form } from 'formik';
 import * as yup from 'yup';
 
-export function SearchForm({ onSubmit }) {
+export function SearchForm({ onSubmit, onChange }) {
   const schema = yup.object().shape({
     movieName: yup.string().required('This field cannot be empty'),
   });

@@ -2,21 +2,21 @@ import { SearchForm } from 'components/SearchForm';
 import { useState, useEffect } from 'react';
 import { getMoviesByName } from '../../services/api';
 import { MovieList } from '../../components/MovieList/index';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 export function Movies() {
-  const [movieName, setMovieName] = useState('');
+  // const [movieName, setMovieName] = useState('');
   const [movies, setMovies] = useState([]);
   const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const name = searchParams.get('movieName') ?? '';
 
   useEffect(() => {
-    const name = movieName.movieName;
     if (name === '' || name === null) return;
     async function moviesByName() {
       try {
-        await getMoviesByName(name).then(data => {
-          setMovies(data);
-        });
+        const response = await getMoviesByName(name);
+        setMovies(response);
       } catch (error) {
         console.log(error);
       }
@@ -24,11 +24,11 @@ export function Movies() {
     if (name) {
       moviesByName();
     }
-  }, [movieName]);
+  }, [name]);
 
-  const handleMovieNameSubmit = searchName => {
-    if (searchName) {
-      setMovieName(searchName);
+  const handleMovieNameSubmit = name => {
+    if (name) {
+      setSearchParams(name);
     }
   };
 
