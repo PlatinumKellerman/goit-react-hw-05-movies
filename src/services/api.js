@@ -21,3 +21,13 @@ export async function getMoviesByName(movieName) {
   });
   return response.data.results;
 }
+
+export async function getMoviesById(id) {
+  const response = await axios.get(`${BASE_URL}/search/movie/${id}?`, {
+    params: {
+      api_key: API_KEY,
+      language: 'en-US',
+    },
+  });
+  return response.data.results;
+}

@@ -2,10 +2,12 @@ import { SearchForm } from 'components/SearchForm';
 import { useState, useEffect } from 'react';
 import { getMoviesByName } from '../../services/api';
 import { MovieList } from '../../components/MovieList/index';
+import { useLocation } from 'react-router-dom';
 
 export function Movies() {
   const [movieName, setMovieName] = useState('');
   const [movies, setMovies] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
     const name = movieName.movieName;
@@ -29,10 +31,11 @@ export function Movies() {
       setMovieName(searchName);
     }
   };
+
   return (
     <>
       <SearchForm onSubmit={handleMovieNameSubmit} />
-      <MovieList movies={movies} />
+      <MovieList movies={movies} location={location} />
     </>
   );
 }

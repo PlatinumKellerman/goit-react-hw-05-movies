@@ -1,8 +1,14 @@
-export function MovieList(props) {
+import { Link } from 'react-router-dom';
+
+export function MovieList({ movies, location }) {
   return (
     <ul>
-      {props.movies.map(({ id, title }) => (
-        <li key={id}>{title}</li>
+      {movies.map(({ id, title }) => (
+        <li key={id}>
+          <Link to={`${id}`} state={{ from: location }}>
+            {title}
+          </Link>
+        </li>
       ))}
     </ul>
   );
