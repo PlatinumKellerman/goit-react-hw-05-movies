@@ -1,7 +1,13 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getMovieCredits } from '../../services/api';
-import { CreditsList, CreditsImage } from './MovieCredits.styled';
+import {
+  CreditsList,
+  CreditsImage,
+  CreditsItem,
+  ActorPlug,
+} from './MovieCredits.styled';
+import actor_plug from '../../img/actor_plug.jpg';
 
 export function MovieCredits() {
   const { movieId } = useParams();
@@ -24,16 +30,21 @@ export function MovieCredits() {
       {credits.length > 0 ? (
         <CreditsList>
           {credits.map(({ id, name, profile_path, character }) => (
-            <li key={id}>
-              <CreditsImage
-                src={`https://image.tmdb.org/t/p/w500${profile_path}`}
-                alt={name}
-              />
+            <CreditsItem key={id}>
+              {profile_path ? (
+                <CreditsImage
+                  src={`https://image.tmdb.org/t/p/w500${profile_path}`}
+                  alt={name}
+                />
+              ) : (
+                <ActorPlug src={actor_plug} alt="Actor Plug" />
+              )}
+
               <div>
                 <h3>{name}</h3>
                 <p>Character: {character}</p>
               </div>
-            </li>
+            </CreditsItem>
           ))}
         </CreditsList>
       ) : (

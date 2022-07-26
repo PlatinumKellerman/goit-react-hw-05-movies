@@ -16,6 +16,11 @@ export const Poster = styled.img`
   height: auto;
 `;
 
+export const PosterPlug = styled.img`
+  width: 250px;
+  height: auto;
+`;
+
 export const UserScoreText = styled.p`
   font-size: 18px;
   font-weight: 600;

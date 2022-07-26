@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useLocation, Outlet } from 'react-router-dom';
 import { getMoviesById } from '../../services/api';
 import { GoBackLinkStyled } from '../../components/GoBackLink/GoBackLink.styled';
+import poster_plug from '../../img/poster_plug.jpg';
 import {
   Poster,
   MainInfoWrapper,
@@ -13,6 +14,7 @@ import {
   AddInfoLink,
   AddInfoWrapper,
   AddInfoList,
+  PosterPlug,
 } from './MovieInfo.styled';
 
 export function MovieInfo() {
@@ -45,7 +47,7 @@ export function MovieInfo() {
               alt={movie.title}
             ></Poster>
           ) : (
-            'Sorry, no poster found!'
+            <PosterPlug src={poster_plug} alt="Poster Plug"></PosterPlug>
           )}
           <InfoWrapper>
             <Title>
