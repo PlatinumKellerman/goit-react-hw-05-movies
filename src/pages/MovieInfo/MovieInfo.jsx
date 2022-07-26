@@ -2,6 +2,14 @@ import { useEffect, useState } from 'react';
 import { useParams, useLocation, Link, Outlet } from 'react-router-dom';
 import { getMoviesById } from '../../services/api';
 import { GoBackLinkStyled } from '../../components/GoBackLink/GoBackLink.styled';
+import {
+  Poster,
+  MainInfoWrapper,
+  InfoWrapper,
+  UserScoreText,
+  Title,
+  TitleYear,
+} from './MovieInfo.styled';
 
 export function MovieInfo() {
   const location = useLocation();
@@ -26,31 +34,34 @@ export function MovieInfo() {
     <main>
       <GoBackLinkStyled to={backLinkHref}>← Go back</GoBackLinkStyled>
       <div>
-        <div>
+        <MainInfoWrapper>
           {movie.poster_path ? (
-            <img
+            <Poster
               src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
               alt={movie.title}
-            ></img>
+            ></Poster>
           ) : (
             'Sorry, no poster found!'
           )}
+          <InfoWrapper>
+            <Title>
+              {movie.title}
+              <TitleYear>({releaseDate})</TitleYear>
+            </Title>
+            <UserScoreText>
+              User Score: {`${Number(movie.vote_average).toFixed(1) * 10}%`}
+            </UserScoreText>
+            <h3>Overview</h3>
+            <p>{movie.overview}</p>
 
-          <h3>
-            {movie.title}
-            <span>({releaseDate})</span>
-          </h3>
-          <p>User Score: {`${Number(movie.vote_average).toFixed(1) * 10}%`}</p>
-          <h3>Overview</h3>
-          <p>{movie.overview}</p>
-
-          <h3>Genres</h3>
-          <p>
-            {movie.genres
-              ? movie.genres.map(genre => genre.name).join(', ')
-              : 'There are no genres!'}
-          </p>
-        </div>
+            <h3>Genres</h3>
+            <p>
+              {movie.genres
+                ? movie.genres.map(genre => genre.name).join(', ')
+                : 'There are no genres!'}
+            </p>
+          </InfoWrapper>
+        </MainInfoWrapper>
 
         <div>
           <h3>Additional information</h3>

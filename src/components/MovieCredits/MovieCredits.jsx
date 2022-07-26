@@ -19,7 +19,6 @@ export function MovieCredits() {
     };
     movieCredits();
   }, [movieId]);
-  console.log(credits);
 
   return (
     <>

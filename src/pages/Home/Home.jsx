@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { getPopularMovies } from '../../services/api';
 import { useLocation } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Container } from 'components/Container';
+import { Title, ListItem, StyledLink } from './Home.styled';
 
 export function Home() {
   const [movies, setMovies] = useState([]);
@@ -20,19 +21,19 @@ export function Home() {
   }, []);
 
   return (
-    <>
-      <h1>Trending today</h1>
+    <Container>
+      <Title>Trending today</Title>
       {movies && (
         <ul>
           {movies.map(({ id, title }) => (
-            <li key={id}>
-              <Link to={`/movies/${id}`} state={{ from: location }}>
+            <ListItem key={id}>
+              <StyledLink to={`/movies/${id}`} state={{ from: location }}>
                 {title}
-              </Link>
-            </li>
+              </StyledLink>
+            </ListItem>
           ))}
         </ul>
       )}
-    </>
+    </Container>
   );
 }

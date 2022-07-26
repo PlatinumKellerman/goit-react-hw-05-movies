@@ -1,5 +1,6 @@
-import { Formik, Field, Form } from 'formik';
+import { Formik } from 'formik';
 import * as yup from 'yup';
+import { SearchInput, SearchButton } from './SearchForm.styled';
 
 export function SearchForm({ onSubmit, onChange }) {
   const schema = yup.object().shape({
@@ -18,16 +19,16 @@ export function SearchForm({ onSubmit, onChange }) {
         validationSchema={schema}
         onSubmit={handleSubmit}
       >
-        <Form>
-          <Field
+        <SearchForm>
+          <SearchInput
             name="movieName"
             type="text"
             autoComplete="off"
             autoFocus
             placeholder="Search movies"
           />
-          <button type="submit">Search</button>
-        </Form>
+          <SearchButton type="submit">Search</SearchButton>
+        </SearchForm>
       </Formik>
     </>
   );

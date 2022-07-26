@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { getMoviesByName } from '../../services/api';
 import { MovieList } from '../../components/MovieList/index';
 import { useLocation, useSearchParams } from 'react-router-dom';
+import { MovieWrapper } from './Movies.styled';
 
 export function Movies() {
   const [movies, setMovies] = useState([]);
@@ -32,9 +33,9 @@ export function Movies() {
   };
 
   return (
-    <>
+    <MovieWrapper>
       <SearchForm onSubmit={handleMovieNameSubmit} />
       {movies && <MovieList movies={movies} location={location} />}
-    </>
+    </MovieWrapper>
   );
 }
