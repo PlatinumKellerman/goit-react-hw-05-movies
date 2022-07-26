@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, useLocation, Link, Outlet } from 'react-router-dom';
+import { useParams, useLocation, Outlet } from 'react-router-dom';
 import { getMoviesById } from '../../services/api';
 import { GoBackLinkStyled } from '../../components/GoBackLink/GoBackLink.styled';
 import {
@@ -9,6 +9,10 @@ import {
   UserScoreText,
   Title,
   TitleYear,
+  AddInfoItem,
+  AddInfoLink,
+  AddInfoWrapper,
+  AddInfoList,
 } from './MovieInfo.styled';
 
 export function MovieInfo() {
@@ -32,7 +36,7 @@ export function MovieInfo() {
 
   return (
     <main>
-      <GoBackLinkStyled to={backLinkHref}>← Go back</GoBackLinkStyled>
+      <GoBackLinkStyled to={backLinkHref}>{'<'} Go back</GoBackLinkStyled>
       <div>
         <MainInfoWrapper>
           {movie.poster_path ? (
@@ -63,21 +67,21 @@ export function MovieInfo() {
           </InfoWrapper>
         </MainInfoWrapper>
 
-        <div>
+        <AddInfoWrapper>
           <h3>Additional information</h3>
-          <ul>
-            <li>
-              <Link to="credits" state={{ from: location }}>
-                Cast
-              </Link>
-            </li>
-            <li>
-              <Link to="reviews" state={{ from: location }}>
-                Reviews
-              </Link>
-            </li>
-          </ul>
-        </div>
+          <AddInfoList>
+            <AddInfoItem>
+              <AddInfoLink to="credits" state={{ from: location }}>
+                {'>'} Cast
+              </AddInfoLink>
+            </AddInfoItem>
+            <AddInfoItem>
+              <AddInfoLink to="reviews" state={{ from: location }}>
+                {'>'} Reviews
+              </AddInfoLink>
+            </AddInfoItem>
+          </AddInfoList>
+        </AddInfoWrapper>
       </div>
       <Outlet />
     </main>

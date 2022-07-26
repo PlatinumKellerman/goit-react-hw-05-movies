@@ -1,8 +1,8 @@
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import { SearchInput, SearchButton } from './SearchForm.styled';
+import { SearchInput, SearchButton, StyledForm } from './SearchForm.styled';
 
-export function SearchForm({ onSubmit, onChange }) {
+export function SearchForm({ onSubmit }) {
   const schema = yup.object().shape({
     movieName: yup.string().required('This field cannot be empty'),
   });
@@ -19,7 +19,7 @@ export function SearchForm({ onSubmit, onChange }) {
         validationSchema={schema}
         onSubmit={handleSubmit}
       >
-        <SearchForm>
+        <StyledForm>
           <SearchInput
             name="movieName"
             type="text"
@@ -28,7 +28,7 @@ export function SearchForm({ onSubmit, onChange }) {
             placeholder="Search movies"
           />
           <SearchButton type="submit">Search</SearchButton>
-        </SearchForm>
+        </StyledForm>
       </Formik>
     </>
   );

@@ -1,14 +1,13 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getMovieCredits } from '../../services/api';
-import { CreditsList, CreditsItem, CreditsImage } from './MovieCredits.styled';
+import { CreditsList, CreditsImage } from './MovieCredits.styled';
 
 export function MovieCredits() {
   const { movieId } = useParams();
-  const [credits, setCredits] = useState(null);
+  const [credits, setCredits] = useState([]);
 
   useEffect(() => {
-    console.log(movieId);
     const movieCredits = async () => {
       try {
         const response = await getMovieCredits(movieId);
@@ -22,10 +21,10 @@ export function MovieCredits() {
 
   return (
     <>
-      {credits && (
+      {credits.length > 0 ? (
         <CreditsList>
           {credits.map(({ id, name, profile_path, character }) => (
-            <CreditsItem key={id}>
+            <li key={id}>
               <CreditsImage
                 src={`https://image.tmdb.org/t/p/w500${profile_path}`}
                 alt={name}
@@ -34,9 +33,11 @@ export function MovieCredits() {
                 <h3>{name}</h3>
                 <p>Character: {character}</p>
               </div>
-            </CreditsItem>
+            </li>
           ))}
         </CreditsList>
+      ) : (
+        <p> We don't have any cast for this movie. </p>
       )}
     </>
   );

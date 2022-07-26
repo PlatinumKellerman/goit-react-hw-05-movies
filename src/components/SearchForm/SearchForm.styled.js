@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Field, Form } from 'formik';
 
-export const SearchForm = styled(Form)`
+export const StyledForm = styled(Form)`
   margin-bottom: 20px;
 `;
 

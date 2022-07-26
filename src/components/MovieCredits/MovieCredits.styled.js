@@ -13,8 +13,6 @@ export const CreditsList = styled.ul`
   margin-right: auto;
 `;
 
-export const CreditsItem = styled.li``;
-
 export const CreditsImage = styled.img`
   width: 100%;
   height: 260px;
