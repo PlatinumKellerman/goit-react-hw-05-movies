@@ -30,3 +30,17 @@ export async function getMoviesById(id) {
   });
   return response.data;
 }
+
+export function getMovieCredits(id) {
+  const response = axios.get(`${BASE_URL}/movie/${id}/credits?`, {
+    params: { api_key: API_KEY },
+  });
+  return response;
+}
+
+export function getMovieReviews(id) {
+  const response = axios.get(`${BASE_URL}/movie/${id}/reviews?`, {
+    params: { api_key: API_KEY },
+  });
+  return response;
+}

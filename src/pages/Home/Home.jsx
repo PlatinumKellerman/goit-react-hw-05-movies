@@ -8,7 +8,7 @@ export function Home() {
   const location = useLocation();
 
   useEffect(() => {
-    const movies = async () => {
+    const getMovies = async () => {
       try {
         const response = await getPopularMovies();
         setMovies(response);
@@ -16,7 +16,7 @@ export function Home() {
         console.log(error);
       }
     };
-    movies();
+    getMovies();
   }, []);
 
   return (

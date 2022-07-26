@@ -5,7 +5,6 @@ import { MovieList } from '../../components/MovieList/index';
 import { useLocation, useSearchParams } from 'react-router-dom';
 
 export function Movies() {
-  // const [movieName, setMovieName] = useState('');
   const [movies, setMovies] = useState([]);
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -35,7 +34,7 @@ export function Movies() {
   return (
     <>
       <SearchForm onSubmit={handleMovieNameSubmit} />
-      <MovieList movies={movies} location={location} />
+      {movies && <MovieList movies={movies} location={location} />}
     </>
   );
 }
