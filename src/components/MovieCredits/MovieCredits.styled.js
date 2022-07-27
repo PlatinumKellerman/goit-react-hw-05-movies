@@ -32,3 +32,12 @@ export const ActorPlug = styled.img`
   height: auto;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
+
+export const CreditsPlug = styled.p`
+  display: flex;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 600;
+  margin-right: auto;
+  margin-left: auto;
+`;

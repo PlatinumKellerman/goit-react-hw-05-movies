@@ -20,3 +20,7 @@ export const StyledLink = styled(Link)`
     color: blueviolet;
   }
 `;
+
+export const LoaderWrapper = styled.div`
+  display: flex;
+`;

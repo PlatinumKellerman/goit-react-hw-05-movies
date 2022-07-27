@@ -1,32 +1,39 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getMovieCredits } from '../../services/api';
+import { toast } from 'react-toastify';
+import { Loader } from '../../components/Loader/index';
 import {
   CreditsList,
   CreditsImage,
   CreditsItem,
   ActorPlug,
+  CreditsPlug,
 } from './MovieCredits.styled';
 import actor_plug from '../../img/actor_plug.jpg';
 
 export function MovieCredits() {
   const { movieId } = useParams();
   const [credits, setCredits] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const movieCredits = async () => {
       try {
         const response = await getMovieCredits(movieId);
         setCredits(response.data.cast);
+        setIsLoading(false);
       } catch (error) {
-        console.log(error);
+        toast.error('Oops! Something went wrong!');
       }
     };
     movieCredits();
+    setIsLoading(true);
   }, [movieId]);
-
+  console.log(credits);
   return (
     <>
+      {isLoading && <Loader />}
       {credits.length > 0 ? (
         <CreditsList>
           {credits.map(({ id, name, profile_path, character }) => (
@@ -39,7 +46,6 @@ export function MovieCredits() {
               ) : (
                 <ActorPlug src={actor_plug} alt="Actor Plug" />
               )}
-
               <div>
                 <h3>{name}</h3>
                 <p>Character: {character}</p>
@@ -48,7 +54,7 @@ export function MovieCredits() {
           ))}
         </CreditsList>
       ) : (
-        <p> We don't have any cast for this movie. </p>
+        <CreditsPlug> We don't have any cast for this movie. </CreditsPlug>
       )}
     </>
   );
