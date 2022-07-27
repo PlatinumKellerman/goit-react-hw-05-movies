@@ -30,13 +30,13 @@ export function MovieCredits() {
     movieCredits();
     setIsLoading(true);
   }, [movieId]);
-  console.log(credits);
+
   return (
     <>
       {isLoading && <Loader />}
       {credits.length > 0 ? (
         <CreditsList>
-          {credits.map(({ id, name, profile_path, character }) => (
+          {credits.slice(0, 20).map(({ id, name, profile_path, character }) => (
             <CreditsItem key={id}>
               {profile_path ? (
                 <CreditsImage
