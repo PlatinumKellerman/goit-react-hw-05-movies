@@ -6,7 +6,7 @@ import { Title, ListItem, StyledLink, LoaderWrapper } from './Home.styled';
 import { toast } from 'react-toastify';
 import { Loader } from '../../components/Loader/index';
 
-export function Home() {
+function Home() {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
@@ -46,3 +46,5 @@ export function Home() {
     </Container>
   );
 }
+
+export default Home;

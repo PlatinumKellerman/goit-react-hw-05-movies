@@ -3,6 +3,7 @@ import { useParams, useLocation, Outlet } from 'react-router-dom';
 import { getMoviesById } from '../../services/api';
 import { GoBackLinkStyled } from '../../components/GoBackLink/GoBackLink.styled';
 import poster_plug from '../../img/poster_plug.jpg';
+import { useNavigate } from 'react-router-dom';
 import {
   Poster,
   MainInfoWrapper,
@@ -17,11 +18,12 @@ import {
   PosterPlug,
 } from './MovieInfo.styled';
 
-export function MovieInfo() {
+function MovieInfo() {
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/movies';
   const { movieId } = useParams();
   const [movie, setMovie] = useState({});
+  const navigate = useNavigate();
   const releaseDate = new Date(movie.release_date).getFullYear();
 
   useEffect(() => {
@@ -30,11 +32,15 @@ export function MovieInfo() {
         const response = await getMoviesById(movieId);
         setMovie(response);
       } catch (error) {
-        console.log(error);
+        if (error) {
+          if (error) {
+            navigate('/*', { replace: true });
+          }
+        }
       }
     };
     movieInfo();
-  }, [movieId]);
+  }, [movieId, navigate]);
 
   return (
     <main>
@@ -89,3 +95,5 @@ export function MovieInfo() {
     </main>
   );
 }
+
+export default MovieInfo;

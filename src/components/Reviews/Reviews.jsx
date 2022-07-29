@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { ReviewPlug } from './Reviews.styled';
 import { Loader } from '../../components/Loader/index';
 
-export function Reviews() {
+function Reviews() {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -42,3 +42,5 @@ export function Reviews() {
     </>
   );
 }
+
+export default Reviews;

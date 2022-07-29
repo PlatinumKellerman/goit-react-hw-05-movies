@@ -7,7 +7,7 @@ import { MovieWrapper } from './Movies.styled';
 import { toast } from 'react-toastify';
 import { Loader } from '../../components/Loader/index';
 
-export function Movies() {
+function Movies() {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
@@ -48,3 +48,5 @@ export function Movies() {
     </MovieWrapper>
   );
 }
+
+export default Movies;

@@ -12,7 +12,7 @@ import {
 } from './MovieCredits.styled';
 import actor_plug from '../../img/actor_plug.jpg';
 
-export function MovieCredits() {
+function MovieCredits() {
   const { movieId } = useParams();
   const [credits, setCredits] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -59,3 +59,5 @@ export function MovieCredits() {
     </>
   );
 }
+
+export default MovieCredits;
