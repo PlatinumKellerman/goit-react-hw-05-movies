@@ -2,17 +2,17 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getMovieCredits } from '../../services/api';
 import { toast } from 'react-toastify';
-import { Loader } from '../../components/Loader/index';
+import { Loader } from '../Loader/index';
 import {
   CreditsList,
   CreditsImage,
   CreditsItem,
   ActorPlug,
   CreditsPlug,
-} from './MovieCredits.styled';
+} from './Cast.styled';
 import actor_plug from '../../img/actor_plug.jpg';
 
-function MovieCredits() {
+function Cast() {
   const { movieId } = useParams();
   const [credits, setCredits] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -60,4 +60,4 @@ function MovieCredits() {
   );
 }
 
-export default MovieCredits;
+export default Cast;

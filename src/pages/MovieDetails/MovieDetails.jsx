@@ -16,9 +16,9 @@ import {
   AddInfoWrapper,
   AddInfoList,
   PosterPlug,
-} from './MovieInfo.styled';
+} from './MovieDetails.styled';
 
-function MovieInfo() {
+function MovieDetails() {
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/movies';
   const { movieId } = useParams();
@@ -96,4 +96,4 @@ function MovieInfo() {
   );
 }
 
-export default MovieInfo;
+export default MovieDetails;
