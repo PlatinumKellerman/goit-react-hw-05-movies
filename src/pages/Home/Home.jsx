@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { getPopularMovies } from '../../services/api';
 import { useLocation } from 'react-router-dom';
-import { Container } from 'components/Container';
-import { Title, ListItem, StyledLink, LoaderWrapper } from './Home.styled';
+import { Container } from 'Layout/common/Container';
+import { Title, LoaderWrapper } from './Home.styled';
 import { toast } from 'react-toastify';
 import { Loader } from '../../components/Loader/index';
+import { MovieList } from '../../components/MovieList/MovieList';
 
 function Home() {
   const [movies, setMovies] = useState([]);
@@ -27,21 +28,13 @@ function Home() {
 
   return (
     <Container>
-      <LoaderWrapper>
-        <Title>Trending today</Title>
-        {isLoading && <Loader />}
-      </LoaderWrapper>
-
-      {movies && (
-        <ul>
-          {movies.map(({ id, title }) => (
-            <ListItem key={id}>
-              <StyledLink to={`/movies/${id}`} state={{ from: location }}>
-                {title}
-              </StyledLink>
-            </ListItem>
-          ))}
-        </ul>
+      <Title>Trending today</Title>
+      {isLoading ? (
+        <LoaderWrapper>
+          <Loader />
+        </LoaderWrapper>
+      ) : (
+        movies && <MovieList movies={movies} location={location} />
       )}
     </Container>
   );

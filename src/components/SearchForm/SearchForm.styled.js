@@ -36,3 +36,9 @@ export const SearchButton = styled.button`
     color: white;
   }
 `;
+
+export const ErrorText = styled.p`
+  color: red;
+  font-size: 16px;
+  padding: 5px;
+`;

@@ -7,8 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 const Home = lazy(() => import('./pages/Home/Home'));
 const Movies = lazy(() => import('./pages/Movies/Movies'));
 const MovieDetails = lazy(() => import('./pages/MovieDetails/MovieDetails'));
-const Cast = lazy(() => import('./components/Cast/Cast'));
-const Reviews = lazy(() => import('./components/Reviews/Reviews'));
+const Cast = lazy(() => import('./pages/MovieDetails/Cast/Cast'));
+const Reviews = lazy(() => import('./pages/MovieDetails/Reviews/Reviews'));
 const PageNotFound = lazy(() => import('./pages/PageNotFound/PageNotFound'));
 
 export const App = () => {

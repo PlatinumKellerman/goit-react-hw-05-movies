@@ -12,7 +12,7 @@ function Movies() {
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
-  const name = searchParams.get('movieName') ?? '';
+  const name = searchParams.get('query') ?? '';
 
   useEffect(() => {
     if (name === '' || name === null) return;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { GoBackLinkStyled } from '../../components/GoBackLink/GoBackLink.styled';
+import { GoBackLink } from '../../components/GoBackLink/GoBackLink';
 
 const NotFoungPage = styled.div`
   margin-top: 100px;
@@ -12,7 +12,7 @@ const NotFoungPage = styled.div`
 function PageNotFound() {
   return (
     <>
-      <GoBackLinkStyled to={'/'}>{'<'} Go back</GoBackLinkStyled>
+      <GoBackLink to={'/'}>{'<'} Go to Homepage</GoBackLink>
       <NotFoungPage> Sorry, page not found! </NotFoungPage>;
     </>
   );

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export const GoBackLinkStyled = styled(Link)`
+export const GoBackLink = styled(Link)`
   display: block;
   width: auto;
   margin: 20px;

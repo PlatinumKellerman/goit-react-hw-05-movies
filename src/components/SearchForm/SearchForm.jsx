@@ -1,10 +1,15 @@
-import { Formik } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
-import { SearchInput, SearchButton, StyledForm } from './SearchForm.styled';
+import {
+  SearchInput,
+  SearchButton,
+  StyledForm,
+  ErrorText,
+} from './SearchForm.styled';
 
 export function SearchForm({ onSubmit }) {
   const schema = yup.object().shape({
-    movieName: yup.string().required('This field cannot be empty'),
+    query: yup.string().required('This field cannot be empty'),
   });
 
   const handleSubmit = (values, { resetForm }) => {
@@ -15,19 +20,23 @@ export function SearchForm({ onSubmit }) {
   return (
     <>
       <Formik
-        initialValues={{ movieName: '' }}
+        initialValues={{ query: '' }}
         validationSchema={schema}
         onSubmit={handleSubmit}
       >
         <StyledForm>
           <SearchInput
-            name="movieName"
+            name="query"
             type="text"
             autoComplete="off"
             autoFocus
             placeholder="Search movies"
           />
           <SearchButton type="submit">Search</SearchButton>
+          <ErrorMessage
+            render={message => <ErrorText>{message}</ErrorText>}
+            name="query"
+          />
         </StyledForm>
       </Formik>
     </>

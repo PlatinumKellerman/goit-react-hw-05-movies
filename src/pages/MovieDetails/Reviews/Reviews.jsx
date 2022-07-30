@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getMovieReviews } from '../../services/api';
+import { getMovieReviews } from '../../../services/api';
 import { toast } from 'react-toastify';
 import { ReviewPlug } from './Reviews.styled';
-import { Loader } from '../../components/Loader/index';
+import { Loader } from '../../../components/Loader/index';
+import { ReviewsList } from '../../../components/ReviewsList/ReviewsList';
 
 function Reviews() {
   const { movieId } = useParams();
@@ -27,18 +28,10 @@ function Reviews() {
   return (
     <>
       {isLoading && <Loader />}
-      <ul>
-        {reviews.length > 0 ? (
-          reviews.map(({ id, author, content }) => (
-            <li key={id}>
-              <h3>Author: {author}</h3>
-              <p>{content}</p>
-            </li>
-          ))
-        ) : (
-          <ReviewPlug> We don't have any reviews for this movie. </ReviewPlug>
-        )}
-      </ul>
+      <ReviewsList reviews={reviews}></ReviewsList>
+      {reviews.length === 0 && (
+        <ReviewPlug> We don't have any reviews for this movie. </ReviewPlug>
+      )}
     </>
   );
 }
