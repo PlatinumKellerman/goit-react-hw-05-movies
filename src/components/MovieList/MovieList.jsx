@@ -1,15 +1,35 @@
-import { MovieListItem, MovieListLink } from './MovieList.styled';
+import {
+  MovieListItem,
+  MovieListLink,
+  List,
+  ImgWrapper,
+  Poster,
+  Title,
+  PosterPlug,
+} from './MovieList.styled';
+import poster_plug from '../../img/poster_plug.jpg';
 
 export function MovieList({ movies, location }) {
+  console.log(movies);
   return (
-    <ul>
-      {movies.map(({ id, title }) => (
+    <List>
+      {movies.map(({ id, title, poster_path }) => (
         <MovieListItem key={id}>
           <MovieListLink to={`/movies/${id}`} state={{ from: location }}>
-            {title}
+            <ImgWrapper>
+              {poster_path ? (
+                <Poster
+                  src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+                  alt={title}
+                ></Poster>
+              ) : (
+                <PosterPlug src={poster_plug} alt="Poster Plug"></PosterPlug>
+              )}
+              <Title>{title}</Title>
+            </ImgWrapper>
           </MovieListLink>
         </MovieListItem>
       ))}
-    </ul>
+    </List>
   );
 }
