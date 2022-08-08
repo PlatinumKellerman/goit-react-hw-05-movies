@@ -10,7 +10,6 @@ import {
 import poster_plug from '../../img/poster_plug.jpg';
 
 export function MovieList({ movies, location }) {
-  console.log(movies);
   return (
     <List>
       {movies.map(({ id, title, poster_path }) => (
